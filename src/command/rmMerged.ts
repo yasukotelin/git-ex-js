@@ -1,17 +1,34 @@
 import { Git } from "../git/git"
 import { Command } from "./command"
+import { Choice, prompts } from "prompts"
 
 export class RmMerged implements Command {
-    name: string = 'rm-merged'
-    description: string = 'remove merged branch'
+    readonly name: string = 'rm-merged'
+    readonly description: string = 'remove merged branch'
 
     private git: Git = new Git()
 
-    action = () => {
-        // gitからマージ済みブランチ取得
-        let branches = this.git.getMergedBranches()
-    
-        // prompt表示
-        // 選択されたブランチの削除
+    action = async () => {
+        const branches = this.git.getMergedBranches()
+
+        if (!branches.length) {
+            return
+        }
+
+        const choices: Choice[] = branches.map(b => ({
+            title: b,
+            value: b,
+        }))
+
+        const response = await prompts.multiselect({
+            type: 'multiselect',
+            name: 'branches',
+            message: 'Pick remove branches',
+            // TODO 引数で切り替えられるようにしたい
+            instructions: true,
+            choices: choices,
+        })
+
+        this.git.removeBranches(response)
     }
 }

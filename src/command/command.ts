@@ -1,6 +1,6 @@
 export interface Command {
-    name: string
-    description: string
+    readonly name: string
+    readonly description: string
 
     action(): void
 }
