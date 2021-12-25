@@ -1,0 +1,24 @@
+{
+  "name": "git-ex",
+  "version": "0.1.0",
+  "description": "git-ex is git extensions tool",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx ncc build src/index.ts -o ./dist --minify",
+    "start": "npx ncc run src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "git-ex": "./dist/index.js"
+  },
+  "author": "yasukotelin",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^16.11.12",
+    "@vercel/ncc": "^0.33.0",
+    "typescript": "^4.5.3"
+  },
+  "dependencies": {
+    "commander": "^8.3.0"
+  }
+}
