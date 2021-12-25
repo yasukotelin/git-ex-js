@@ -23,7 +23,7 @@ not yet.
 ### from local code
 
 ```bash
-git clons https://github.com/yasukotelin/git-ex-js
+git clone https://github.com/yasukotelin/git-ex-js
 npm install
 npm run build
 npm install -g ./
