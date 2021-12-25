@@ -1,14 +1,11 @@
 import { Git } from "../git/git"
-import { Command } from "./command"
 import { Choice, prompts } from "prompts"
 
-export class RmMerged implements Command {
-    readonly name: string = 'rm-merged'
-    readonly description: string = 'remove merged branch'
+export class RmMerged {
 
     private git: Git = new Git()
 
-    action = async () => {
+    action = async (instructions: boolean) => {
         const branches = this.git.getMergedBranches()
 
         if (!branches.length) {
@@ -24,8 +21,7 @@ export class RmMerged implements Command {
             type: 'multiselect',
             name: 'branches',
             message: 'Pick remove branches',
-            // TODO 引数で切り替えられるようにしたい
-            instructions: true,
+            instructions: instructions,
             choices: choices,
         })
 
