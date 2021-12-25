@@ -2,11 +2,18 @@
 
 import { Command } from 'commander'
 import { version, description } from '../package.json'
+import { RmMerged } from './command/rmMerged'
 
-let program = new Command()
-program.version(version).description(description)
+const program = new Command()
 
+const rmMerged = new RmMerged()
+
+program
+    .version(version)
+    .description(description)
+    .command(rmMerged.name)
+    .description(rmMerged.description)
+    .action(rmMerged.action)
+
+// Run program
 program.parse(process.argv);
-
-// Show help if empty.
-program.help()
