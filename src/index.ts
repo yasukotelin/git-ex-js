@@ -16,7 +16,7 @@ program
     .command('rm-merged')
     .description('remove merged branch')
     .option('-ni, --no-instructions', 'not display instructions')
-    .action((options) => rmMerged.action(options.noInstructions))
+    .action((options) => rmMerged.action(options.instructions))
 
 // Run program
 program.parse(process.argv);
