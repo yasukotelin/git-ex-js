@@ -1,10 +1,8 @@
-
-import { execSync } from "child_process"
+import { execSync } from 'child_process';
 
 export class Git {
 
-    // Get merged branches except 'main', 'master' and 'develop'.
-    getMergedBranches = (): string[] => {
+    getMergedBranches = () => {
         const stdout = execSync('git branch --merged')
         const branches = stdout.toString().split(/\n/)
 
@@ -17,7 +15,7 @@ export class Git {
     }
 
     // Remove branches
-    removeBranches = (branches: string[]) => {
+    removeBranches = (branches) => {
         const stdout = execSync(`git branch -d ${branches.join(' ')}`)
         return stdout.toString()
     }
