@@ -1,13 +1,18 @@
+#! /usr/bin/env node
+
 import { program } from 'commander'
 import { RmMerged } from './command/rmMerged.js'
-import { pkg } from './packageJson.cjs'
+import { createRequire } from "module";
+
+const require = createRequire(import.meta.url);
+const { version, description } = require("../package.json")
 
 const rmMerged = new RmMerged()
 
 program
     // git-ex
-    .version(pkg.version)
-    .description(pkg.description)
+    .version(version)
+    .description(description)
     // git-ex rm-merged
     .command('rm-merged')
     .description('remove merged branch')
