@@ -1,23 +1,32 @@
 #! /usr/bin/env node
 
-import { program } from 'commander'
+import { Option, program } from 'commander'
 import { RmMerged } from './command/rmMerged.js'
+import { Stage } from './command/stage.js'
 import { createRequire } from "module";
 
 const require = createRequire(import.meta.url);
 const { version, description } = require("../package.json")
 
 const rmMerged = new RmMerged()
+const stage = new Stage()
+
+const noInstructionsOption = new Option(
+    '-ni, --no-instructions', 'not display instructions'
+)
 
 program
-    // git-ex
     .version(version)
     .description(description)
-    // git-ex rm-merged
-    .command('rm-merged')
+
+program.command('rm-merged')
     .description('remove merged branch')
-    .option('-ni, --no-instructions', 'not display instructions')
+    .addOption(noInstructionsOption)
     .action((options) => rmMerged.action(options.instructions))
+
+program.command('stage')
+    .addOption(noInstructionsOption)
+    .action((options) => stage.action(options.instructions))
 
 // Run program
 program.parse(process.argv);
