@@ -11,9 +11,9 @@ const { version, description } = require("../package.json")
 const rmMerged = new RmMerged()
 const stage = new Stage()
 
-const noInstructionsOption = new Option(
-    '-ni, --no-instructions', 'not display instructions'
-)
+const instructionsOption = new Option(
+    '-i, --instructions', 'display instructions'
+).default(false, 'not display')
 
 program
     .version(version)
@@ -21,11 +21,11 @@ program
 
 program.command('rm-merged')
     .description('remove merged branch')
-    .addOption(noInstructionsOption)
+    .addOption(instructionsOption)
     .action((options) => rmMerged.action(options.instructions))
 
 program.command('stage')
-    .addOption(noInstructionsOption)
+    .addOption(instructionsOption)
     .action((options) => stage.action(options.instructions))
 
 // Run program
