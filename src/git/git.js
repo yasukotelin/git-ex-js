@@ -48,4 +48,9 @@ export class Git {
         const stdout = execSync(`git add ${files.join(' ')}`)
         return stdout.toString()
     }
+
+    unstage = (files) => {
+        const stdout = execSync(`git reset HEAD ${files.join(' ')}`)
+        return stdout.toString()
+    }
 }

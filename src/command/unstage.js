@@ -1,17 +1,16 @@
 import prompts from "prompts";
 import { Git } from "../git/git.js";
 
-export class Stage {
+export class Unstage {
 
     #git = new Git()
 
     action = async(instructions) => {
         const status = this.#git.status()
-        const unstagedFiles = [...status.unstage, ...status.untracked]
 
-        if (!unstagedFiles.length) return
+        if (!status.stage.length) return
 
-        const choices = unstagedFiles.map(f => ({
+        const choices = status.stage.map(f => ({
             title: f,
             value: f,
         }))
@@ -20,7 +19,7 @@ export class Stage {
         const response = await prompts({
             type: 'multiselect',
             name: name,
-            message: 'Pick stage files',
+            message: 'Pick unstage files',
             instructions: instructions,
             choices: choices,
         })
@@ -29,6 +28,6 @@ export class Stage {
         if (!selected) return
         if (!selected.length) return
 
-        this.#git.add(selected)
+        this.#git.unstage(selected)
     }
 }

@@ -3,6 +3,7 @@
 import { Option, program } from 'commander'
 import { RmMerged } from './command/rmMerged.js'
 import { Stage } from './command/stage.js'
+import { Unstage } from './command/unstage.js'
 import { createRequire } from "module";
 
 const require = createRequire(import.meta.url);
@@ -10,6 +11,7 @@ const { version, description } = require("../package.json")
 
 const rmMerged = new RmMerged()
 const stage = new Stage()
+const unstage = new Unstage()
 
 const instructionsOption = new Option(
     '-i, --instructions', 'display instructions'
@@ -27,6 +29,10 @@ program.command('rm-merged')
 program.command('stage')
     .addOption(instructionsOption)
     .action((options) => stage.action(options.instructions))
+
+program.command('unstage')
+    .addOption(instructionsOption)
+    .action((options) => unstage.action(options.instructions))
 
 // Run program
 program.parse(process.argv);
