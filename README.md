@@ -14,6 +14,18 @@ port of [git-ex](https://github.com/yasukotelin/git-ex) with Node.js.
 | git ex stage | stage files | :heavy_check_mark: |
 | git ex unstage | unstage files | :heavy_check_mark:|
 
+### git ex stage
+
+You can select unstage and untracked files for staging.
+
+### git ex unstage
+
+You can select stage files for unstaging.
+
+### git ex rm-merged
+
+You can select to remove merged branches.
+
 ## Install
 
 ### from npm
