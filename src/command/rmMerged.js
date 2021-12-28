@@ -7,28 +7,57 @@ export class RmMerged {
 
     action = async (instructions) => {
         const branches = this.#git.getMergedBranches()
+        if (!branches.length) { 
+            return
+        }
 
-        if (!branches.length) return
+        const selectedBranches = await this.#multiselectRemoveBrances(branches, instructions)
 
+        if (selectedBranches == null) {
+            return
+        }
+
+        if (!await this.#confirm()) {
+            return
+        }
+            
+        this.#git.removeBranches(selected)
+    }
+
+    #multiselectRemoveBrances = async (branches, instructions) => {
         const choices = branches.map((b) => ({
             title: b,
             value: b
         }))
 
-        const name = 'branches'
         const response = await prompts({
             type: 'multiselect',
-            name: name,
+            name: 'branches',
             message: 'Pick remove branches',
             instructions: instructions,
             choices: choices
         })
 
-        const selected = response[name]
+        const selected = response.branches
 
-        if (!selected) return
-        if (!selected.length) return
+        if (!selected) {
+            return null
+        }
+        if (!selected.length) {
+            return null
+        }
 
-        this.#git.removeBranches(selected)
+        return selected
+    }
+
+    #confirm = async () => {
+        const response = await prompts({
+            type: 'confirm',
+            name: 'confirm',
+            message: 'Are you sure you want to delete the branches?',
+            initial: false,
+        })
+        
+        return response.confirm
     }
 }
