@@ -11,7 +11,7 @@ port of [git-ex](https://github.com/yasukotelin/git-ex) with Node.js.
 | git ex discard | discard all files |:x:|
 | git ex rm-merged | remove merged branch | :heavy_check_mark: |
 | git ex switch | switch branch | :x: |
-| git ex stage | stage files | :x: |
+| git ex stage | stage files | :heavy_check_mark: |
 | git ex unstage | unstage files | :x:|
 
 ## Install
