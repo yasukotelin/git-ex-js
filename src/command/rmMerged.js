@@ -15,16 +15,20 @@ export class RmMerged {
             value: b
         }))
 
+        const name = 'branches'
         const response = await prompts({
             type: 'multiselect',
-            name: 'branches',
+            name: name,
             message: 'Pick remove branches',
             instructions: instructions,
             choices: choices
         })
 
-        if (!response.length) return
+        const selected = response[name]
 
-        this.#git.removeBranches(response)
+        if (!selected) return
+        if (!selected.length) return
+
+        this.#git.removeBranches(selected)
     }
 }
