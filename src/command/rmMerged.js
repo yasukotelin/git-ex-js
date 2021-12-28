@@ -21,7 +21,7 @@ export class RmMerged {
             return
         }
             
-        this.#git.removeBranches(selected)
+        this.#git.removeBranches(selectedBranches)
     }
 
     #multiselectRemoveBrances = async (branches, instructions) => {
