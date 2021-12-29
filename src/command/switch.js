@@ -10,12 +10,17 @@ export class Switch {
 
         const selectedBranch = await this.#select(branches)
 
-        if (selectedBranch === null) {
+        if (!selectedBranch) {
             return
         }
 
         if (remote) {
             const newBranchName = await this.#askNewBranchName(selectedBranch)
+
+            if (!newBranchName) {
+                return
+            }
+
             try {
                 this.#git.switchRemote(selectedBranch, newBranchName)
             } catch (e) {
