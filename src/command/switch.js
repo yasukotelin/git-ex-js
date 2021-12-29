@@ -8,21 +8,38 @@ export class Switch {
     action = async (remote) => {
         const branches = this.#git.getBranch(remote)
 
-        this.#autocomplete(branches)
+        const selected = await this.#select(branches)
+
+        if (selected === null) {
+            return
+        }
+
+        try {
+            this.#git.switch(selected, remote)
+        } catch (e) {
+            // Git already outputs an error, so it doesn't do anything.
+        }
     }
 
-    #autocomplete = async (branches) => {
+    #select = async (branches) => {
         const choices = branches.map((b) => ({
             title: b,
+            value: b,
         }))
 
         const response = await prompts({
-            type: 'autocomplete',
+            type: 'select',
             name: 'branche',
             message: 'Pick switch branch',
             choices: choices,
         })
 
-        console.log(response)
+        const selected = response.branche
+
+        if (!selected || !selected.length) {
+            return null
+        }
+
+        return selected
     }
 }

@@ -22,8 +22,26 @@ export class Git {
                 status.stage.push(e.substring(3, e.length))
             }
         })
-        
+
         return status
+    }
+
+    switch = (branch, remote) => {
+        if (remote) {
+            this.#switchRemote(branch)
+        } else {
+            this.#switch(branch)
+        }
+    }
+
+    #switch = (branch) => {
+        const stdout = execSync(`git switch ${branch}`)
+        return stdout.toString()
+    }
+
+    #switchRemote = (branch) => {
+        // TODO implements
+        // git switch -c feature/xxx origin/feature/xxx
     }
 
     getBranch = (remote) => {
