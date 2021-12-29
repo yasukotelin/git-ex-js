@@ -5,52 +5,70 @@ port of [git-ex](https://github.com/yasukotelin/git-ex) with Node.js.
 
 ## Commands
 
-| command | action | implements |
-| -- | -- | -- |
-| git ex diff | diff with selecter | :x: |
-| git ex discard | discard all files |:x:|
-| git ex rm-merged | remove merged branch | :heavy_check_mark: |
-| git ex switch | switch branch | :heavy_check_mark: |
-| git ex stage | stage files | :heavy_check_mark: |
-| git ex unstage | unstage files | :heavy_check_mark:|
+```
+Usage: git-ex [options] [command]
+
+git-ex is git extensions tool
+
+Options:
+  -V, --version        output the version number
+  -h, --help           display help for command
+
+Commands:
+  switch [options]     switch branch
+  rm-merged [options]  remove merged branch
+  stage [options]      stage files
+  unstage [options]    unstage files
+  help [command]       display help for command
+```
 
 ### git ex switch
 
-```bash
-git ex switch
 ```
+Usage: git-ex switch [options]
 
-You can switch a branch.
+switch branch
 
-If you use `--remote` option, create local branch from remote branch and switch to it.
-
-```bash
-git ex switch --remote
+Options:
+  -r, --remote  switch remote branch
+  -h, --help    display help for command
 ```
 
 ### git ex stage
 
-```bash
-git ex stage
 ```
+Usage: git-ex stage [options]
 
-You can select unstage and untracked files for staging.
+stage files
+
+Options:
+  -i, --instructions  display instructions (default: not display)
+  -h, --help          display help for command
+```
 
 ### git ex unstage
 
-```bash
-git ex unstage
 ```
+Usage: git-ex unstage [options]
 
-You can select stage files for unstaging.
+unstage files
+
+Options:
+  -i, --instructions  display instructions (default: not display)
+  -h, --help          display help for command
+```
 
 ### git ex rm-merged
 
-```bash
-git ex rm-merged
 ```
+Usage: git-ex rm-merged [options]
 
-You can select to remove merged branches.
+remove merged branch
+
+Options:
+  -i, --instructions  display instructions (default: not display)
+  -h, --help          display help for command
+```
 
 ## Install
 

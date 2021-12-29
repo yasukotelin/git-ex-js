@@ -34,10 +34,12 @@ program.command('rm-merged')
     .action((options) => rmMerged.action(options.instructions))
 
 program.command('stage')
+    .description('stage files')
     .addOption(instructionsOption)
     .action((options) => stage.action(options.instructions))
 
 program.command('unstage')
+    .description('unstage files')
     .addOption(instructionsOption)
     .action((options) => unstage.action(options.instructions))
 
