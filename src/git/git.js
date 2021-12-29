@@ -22,8 +22,33 @@ export class Git {
                 status.stage.push(e.substring(3, e.length))
             }
         })
-        
+
         return status
+    }
+
+    // Switch local branch
+    switch = (branch) => {
+        const stdout = execSync(`git switch ${branch}`)
+        return stdout.toString()
+    }
+
+    /**
+     * Create new branch from remote branch and switch it.
+     * @param {string} branch remote branch
+     * @param {string} newBranchName create new branch name
+     */
+    switchRemote = (branch, newBranchName) => {
+        execSync(`git switch -c ${newBranchName} ${branch}`)
+    }
+
+    getBranch = (remote) => {
+        const cmd = remote ? 'git branch --remote' : 'git branch'
+        const stdout = execSync(cmd)
+        const branches = stdout.toString().split(/\n/)
+        return branches
+            .map(v => v.trim())
+            // remove current branch and empty value.
+            .filter(v => (v.length != 0) && !(v.startsWith('*')))
     }
 
     getMergedBranches = () => {
