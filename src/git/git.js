@@ -26,22 +26,19 @@ export class Git {
         return status
     }
 
-    switch = (branch, remote) => {
-        if (remote) {
-            this.#switchRemote(branch)
-        } else {
-            this.#switch(branch)
-        }
-    }
-
-    #switch = (branch) => {
+    // Switch local branch
+    switch = (branch) => {
         const stdout = execSync(`git switch ${branch}`)
         return stdout.toString()
     }
 
-    #switchRemote = (branch) => {
-        // TODO implements
-        // git switch -c feature/xxx origin/feature/xxx
+    /**
+     * Create new branch from remote branch and switch it.
+     * @param {string} branch remote branch
+     * @param {string} newBranchName create new branch name
+     */
+    switchRemote = (branch, newBranchName) => {
+        execSync(`git switch -c ${newBranchName} ${branch}`)
     }
 
     getBranch = (remote) => {

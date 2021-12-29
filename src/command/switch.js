@@ -8,16 +8,25 @@ export class Switch {
     action = async (remote) => {
         const branches = this.#git.getBranch(remote)
 
-        const selected = await this.#select(branches)
+        const selectedBranch = await this.#select(branches)
 
-        if (selected === null) {
+        if (selectedBranch === null) {
             return
         }
 
-        try {
-            this.#git.switch(selected, remote)
-        } catch (e) {
-            // Git already outputs an error, so it doesn't do anything.
+        if (remote) {
+            const newBranchName = await this.#askNewBranchName(selectedBranch)
+            try {
+                this.#git.switchRemote(selectedBranch, newBranchName)
+            } catch (e) {
+                // Git already outputs an error, so it doesn't do anything.
+            }
+        } else {
+            try {
+                this.#git.switch(selectedBranch, remote)
+            } catch (e) {
+                // Git already outputs an error, so it doesn't do anything.
+            }
         }
     }
 
@@ -41,5 +50,24 @@ export class Switch {
         }
 
         return selected
+    }
+
+    #askNewBranchName = async (branch) => {
+        const suggestBranchName = branch.substring(branch.indexOf('/') + 1, branch.length)
+
+        const response = await prompts({
+            type: 'text',
+            name: 'newBranchName',
+            message: 'New branch name',
+            initial: suggestBranchName,
+        })
+
+        const newBranchName = response.newBranchName
+
+        if (!newBranchName || !newBranchName.length) {
+            return null
+        }
+
+        return newBranchName
     }
 }
