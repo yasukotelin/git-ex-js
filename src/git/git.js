@@ -26,6 +26,16 @@ export class Git {
         return status
     }
 
+    getBranch = (remote) => {
+        const cmd = remote ? 'git branch --remote' : 'git branch'
+        const stdout = execSync(cmd)
+        const branches = stdout.toString().split(/\n/)
+        return branches
+            .map(v => v.trim())
+            // remove current branch and empty value.
+            .filter(v => (v.length != 0) && !(v.startsWith('*')))
+    }
+
     getMergedBranches = () => {
         const stdout = execSync('git branch --merged')
         const branches = stdout.toString().split(/\n/)
