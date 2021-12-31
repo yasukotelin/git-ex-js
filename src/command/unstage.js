@@ -8,9 +8,9 @@ export class Unstage {
     action = async(instructions) => {
         const status = this.#git.status()
 
-        if (!status.stage.length) return
+        if (!status.index.length) return
 
-        const choices = status.stage.map(f => ({
+        const choices = status.index.map(f => ({
             title: f,
             value: f,
         }))
