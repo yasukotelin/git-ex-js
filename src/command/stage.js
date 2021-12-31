@@ -7,7 +7,7 @@ export class Stage {
 
     action = async(instructions) => {
         const status = this.#git.status()
-        const unstagedFiles = [...status.unstage, ...status.untracked]
+        const unstagedFiles = [...status.workingTree, ...status.untracked]
 
         if (!unstagedFiles.length) return
 
