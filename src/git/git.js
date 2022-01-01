@@ -26,7 +26,7 @@ export class Git {
                 if (e.startsWith(' ')) {
                     status.workingTree.push(e.substring(3, e.length))
                 }
-                if (e[1] !== ' ') {
+                if (e[0] !== ' ') {
                     status.index.push(e.substring(3, e.length))
                 }
             }
