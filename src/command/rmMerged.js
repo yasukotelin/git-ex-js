@@ -1,63 +1,65 @@
-import { Git } from '../git/git.js'
-import prompts from 'prompts'
+import { Git } from "../git/git.js";
+import prompts from "prompts";
 
 export class RmMerged {
+  #git = new Git();
 
-    #git = new Git()
-
-    action = async (instructions) => {
-        const branches = this.#git.getMergedBranches()
-        if (!branches.length) { 
-            return
-        }
-
-        const selectedBranches = await this.#multiselectRemoveBrances(branches, instructions)
-
-        if (selectedBranches == null) {
-            return
-        }
-
-        if (!await this.#confirm()) {
-            return
-        }
-            
-        this.#git.removeBranches(selectedBranches)
+  action = async (instructions) => {
+    const branches = this.#git.getMergedBranches();
+    if (!branches.length) {
+      return;
     }
 
-    #multiselectRemoveBrances = async (branches, instructions) => {
-        const choices = branches.map((b) => ({
-            title: b,
-            value: b
-        }))
+    const selectedBranches = await this.#multiselectRemoveBrances(
+      branches,
+      instructions
+    );
 
-        const response = await prompts({
-            type: 'multiselect',
-            name: 'branches',
-            message: 'Pick remove branches',
-            instructions: instructions,
-            choices: choices
-        })
-
-        const selected = response.branches
-
-        if (!selected) {
-            return null
-        }
-        if (!selected.length) {
-            return null
-        }
-
-        return selected
+    if (selectedBranches == null) {
+      return;
     }
 
-    #confirm = async () => {
-        const response = await prompts({
-            type: 'confirm',
-            name: 'confirm',
-            message: 'Are you sure you want to delete the branches?',
-            initial: false,
-        })
-        
-        return response.confirm
+    if (!(await this.#confirm())) {
+      return;
     }
+
+    this.#git.removeBranches(selectedBranches);
+  };
+
+  #multiselectRemoveBrances = async (branches, instructions) => {
+    const choices = branches.map((b) => ({
+      title: b,
+      value: b,
+    }));
+
+    const response = await prompts({
+      type: "multiselect",
+      name: "branches",
+      message: "Pick remove branches",
+      instructions: instructions,
+      choices: choices,
+    });
+
+    const selected = response.branches;
+
+    if (!selected) {
+      return null;
+    }
+    if (!selected.length) {
+      return null;
+    }
+
+    return selected;
+  };
+
+  #confirm = async () => {
+    const response = await prompts({
+      type: "confirm",
+      name: "confirm",
+      message: "Are you sure you want to delete the branches?",
+      initial: false,
+    });
+
+    return response.confirm;
+  };
 }

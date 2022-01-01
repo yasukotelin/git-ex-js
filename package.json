@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node ./src/index.js",
     "localInstall": "npm install -g ./",
+    "format": "prettier --write 'src/**/*.js'",
     "uninstall": "npm uninstall -g git-ex"
   },
   "bin": {
@@ -14,6 +15,7 @@
   "author": "yasukotelin",
   "license": "ISC",
   "devDependencies": {
+    "prettier": "^2.5.1"
   },
   "dependencies": {
     "commander": "^8.3.0",
