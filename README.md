@@ -1,6 +1,6 @@
 # git-ex
 
-git-ex is git extensions tool.
+git-ex is git extensions tool.  
 port of [git-ex](https://github.com/yasukotelin/git-ex) with Node.js.
 
 ## Commands
@@ -92,6 +92,22 @@ git clone https://github.com/yasukotelin/git-ex-js
 cd git-ex-js
 npm install
 node src/index.js
+```
+
+### Formatter
+
+use prettier
+
+```
+npm run format
+```
+
+recommend use vscode auto save.
+
+```setting.json
+{
+  "editor.formatOnSave" : true
+}
 ```
 
 ## Author
