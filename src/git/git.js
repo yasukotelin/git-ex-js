@@ -18,15 +18,15 @@ export class Git {
         status.untracked.push(e.substring(3, e.length));
       } else {
         /*
-                'M  src/index.js' -> index only.
-                ' M src/index.js' -> working tree only.
-                'MM src/index.js' -> both index and working tree
-                 */
-        if (e.startsWith(" ")) {
-          status.workingTree.push(e.substring(3, e.length));
-        }
+        'M  src/index.js' -> index only.
+        ' M src/index.js' -> working tree only.
+        'MM src/index.js' -> both index and working tree
+        */
         if (e[0] !== " ") {
           status.index.push(e.substring(3, e.length));
+        }
+        if (e[1] !== " ") {
+          status.workingTree.push(e.substring(3, e.length));
         }
       }
     });
