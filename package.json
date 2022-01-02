@@ -7,6 +7,7 @@
     "start": "node ./src/index.js",
     "localInstall": "npm install -g ./",
     "format": "prettier --write 'src/**/*.js'",
+    "checkPrettier": "prettier --check 'src/**/*.js'",
     "uninstall": "npm uninstall -g git-ex"
   },
   "bin": {
