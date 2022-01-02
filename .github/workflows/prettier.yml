@@ -1,7 +1,6 @@
 name: Check with prettier
 
 on:
-  push:
   pull_request:
 jobs:
   prettier:
