@@ -14,7 +14,7 @@
     "git-ex": "./src/index.js"
   },
   "author": "yasukotelin",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "prettier": "^2.5.1"
   },
