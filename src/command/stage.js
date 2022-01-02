@@ -22,7 +22,7 @@ export class Stage {
       message: "Pick stage files",
       instructions: instructions,
       choices: choices,
-    })
+    });
 
     const selected = response[name];
     if (!selected) return;
