@@ -1,4 +1,4 @@
-import { execSync } from "child_process";
+import { exec, execSync, spawn } from "child_process";
 
 export class Git {
   status = () => {
@@ -92,5 +92,18 @@ export class Git {
   unstage = (files) => {
     const stdout = execSync(`git reset HEAD ${files.join(" ")}`);
     return stdout.toString();
+  };
+
+  /**
+   * execute git diff
+   * @param {string[]} files
+   * @param {boolean} isStaged
+   * @returns {string} stdout
+   */
+  diff = (files, isStaged) => {
+    const options = isStaged
+      ? ["diff", "--cached", ...files]
+      : ["diff", ...files];
+    spawn("git", options, { stdio: "inherit" });
   };
 }

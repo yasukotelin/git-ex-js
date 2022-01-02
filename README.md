@@ -16,9 +16,10 @@ Options:
 
 Commands:
   switch [options]     switch branch
-  rm-merged [options]  remove merged branch
   stage [options]      stage files
   unstage [options]    unstage files
+  diff [options]       show diff with selector
+  rm-merged [options]  remove merged branch
   help [command]       display help for command
 ```
 
@@ -52,6 +53,18 @@ Options:
 Usage: git-ex unstage [options]
 
 unstage files
+
+Options:
+  -i, --instructions  display instructions (default: not display)
+  -h, --help          display help for command
+```
+
+### git ex diff
+
+```
+Usage: git-ex diff [options]
+
+show diff with selector
 
 Options:
   -i, --instructions  display instructions (default: not display)
@@ -96,7 +109,7 @@ node src/index.js
 
 ### Formatter
 
-use prettier
+use prettier default setting.
 
 ```
 npm run format

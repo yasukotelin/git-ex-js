@@ -6,14 +6,16 @@ import { Stage } from "./command/stage.js";
 import { Unstage } from "./command/unstage.js";
 import { createRequire } from "module";
 import { Switch } from "./command/switch.js";
+import Diff from "./command/diff.js";
 
 const require = createRequire(import.meta.url);
 const { version, description } = require("../package.json");
 
 const switchBranch = new Switch();
-const rmMerged = new RmMerged();
 const stage = new Stage();
 const unstage = new Unstage();
+const diff = new Diff();
+const rmMerged = new RmMerged();
 
 const instructionsOption = new Option(
   "-i, --instructions",
@@ -29,12 +31,6 @@ program
   .action((options) => switchBranch.action(options.remote));
 
 program
-  .command("rm-merged")
-  .description("remove merged branch")
-  .addOption(instructionsOption)
-  .action((options) => rmMerged.action(options.instructions));
-
-program
   .command("stage")
   .description("stage files")
   .addOption(instructionsOption)
@@ -45,6 +41,18 @@ program
   .description("unstage files")
   .addOption(instructionsOption)
   .action((options) => unstage.action(options.instructions));
+
+program
+  .command("diff")
+  .description("show diff with selector")
+  .addOption(instructionsOption)
+  .action((options) => diff.action(options.instructions));
+
+program
+  .command("rm-merged")
+  .description("remove merged branch")
+  .addOption(instructionsOption)
+  .action((options) => rmMerged.action(options.instructions));
 
 // Run program
 program.parse(process.argv);
