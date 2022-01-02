@@ -3,7 +3,21 @@
 ![prettier workflow](https://github.com/yasukotelin/git-ex-js/actions/workflows/prettier.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 git-ex is git extensions tool.  
-port of [git-ex](https://github.com/yasukotelin/git-ex) with Node.js.
+
+## Install
+
+### from npm
+
+not yet.
+
+### from local code
+
+```bash
+git clone https://github.com/yasukotelin/git-ex-js
+npm install
+npm run build
+npm install -g ./
+```
 
 ## Commands
 
@@ -83,21 +97,6 @@ remove merged branch
 Options:
   -i, --instructions  display instructions (default: not display)
   -h, --help          display help for command
-```
-
-## Install
-
-### from npm
-
-not yet.
-
-### from local code
-
-```bash
-git clone https://github.com/yasukotelin/git-ex-js
-npm install
-npm run build
-npm install -g ./
 ```
 
 ## Development
