@@ -121,6 +121,24 @@ export class Git {
     execSync(`git stash save -u ${message}`);
   };
 
+  stashList = () => {
+    const stdout = execSync("git stash list");
+    const list = stdout.toString().split(/\n/);
+    return list.filter((v) => v.length !== 0);
+  };
+
+  stashPop = (stash) => {
+    execSync(`git stash pop ${stash}`);
+  };
+
+  stashApply = (stash) => {
+    execSync(`git stash drop ${stash}`);
+  };
+
+  stashDrop = (stash) => {
+    execSync(`git stash drop ${stash}`);
+  };
+
   stashClear = () => {
     execSync("git stash clear");
   };
