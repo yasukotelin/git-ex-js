@@ -8,6 +8,7 @@ import { createRequire } from "module";
 import { Switch } from "./command/switch.js";
 import Diff from "./command/diff.js";
 import Discard from "./command/discard.js";
+import Stash from "./command/stash.js";
 
 const require = createRequire(import.meta.url);
 const { version, description } = require("../package.json");
@@ -16,6 +17,7 @@ const switchBranch = new Switch();
 const stage = new Stage();
 const unstage = new Unstage();
 const diff = new Diff();
+const stash = new Stash();
 const discard = new Discard();
 const rmMerged = new RmMerged();
 
@@ -63,9 +65,9 @@ program
 
 program
   .command("stash")
-  .description("stash accesor")
+  .description("stash actions")
   .addOption(instructionsOption)
-  .action((options) => {});
+  .action((options) => stash.action(options.instructions));
 
 program
   .command("discard")

@@ -116,4 +116,35 @@ export class Git {
     execSync(`git checkout ${stagedFiles.join(" ")}`);
     execSync(`git clean -df ${untrackedFiles.join(" ")}`);
   };
+
+  stashSave = (message) => {
+    const options = ["stash", "save", "-u", message];
+    spawn("git", options, { stdio: "inherit" });
+  };
+
+  stashList = () => {
+    const stdout = execSync("git stash list");
+    const list = stdout.toString().split(/\n/);
+    return list.filter((v) => v.length !== 0);
+  };
+
+  stashPop = (stash) => {
+    const options = ["stash", "pop", stash];
+    spawn("git", options, { stdio: "inherit" });
+  };
+
+  stashApply = (stash) => {
+    const options = ["stash", "apply", stash];
+    spawn("git", options, { stdio: "inherit" });
+  };
+
+  stashDrop = (stash) => {
+    const options = ["stash", "drop", stash];
+    spawn("git", options, { stdio: "inherit" });
+  };
+
+  stashClear = () => {
+    const options = ["stash", "clear"];
+    spawn("git", options, { stdio: "inherit" });
+  };
 }
