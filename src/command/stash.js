@@ -56,11 +56,7 @@ export default class Stash {
 
     const message = response.message;
 
-    try {
-      this.#git.stashSave(message);
-    } catch (e) {
-      // Git already outputs an error, so it doesn't do anything.
-    }
+    this.#git.stashSave(message);
   };
 
   #list = async () => {

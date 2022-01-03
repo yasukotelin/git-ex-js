@@ -118,7 +118,8 @@ export class Git {
   };
 
   stashSave = (message) => {
-    execSync(`git stash save -u ${message}`);
+    const options = ["stash", "save", "-u", message];
+    spawn("git", options, { stdio: "inherit" });
   };
 
   stashList = () => {
@@ -128,18 +129,22 @@ export class Git {
   };
 
   stashPop = (stash) => {
-    execSync(`git stash pop ${stash}`);
+    const options = ["stash", "pop", stash];
+    spawn("git", options, { stdio: "inherit" });
   };
 
   stashApply = (stash) => {
-    execSync(`git stash drop ${stash}`);
+    const options = ["stash", "apply", stash];
+    spawn("git", options, { stdio: "inherit" });
   };
 
   stashDrop = (stash) => {
-    execSync(`git stash drop ${stash}`);
+    const options = ["stash", "drop", stash];
+    spawn("git", options, { stdio: "inherit" });
   };
 
   stashClear = () => {
-    execSync("git stash clear");
+    const options = ["stash", "clear"];
+    spawn("git", options, { stdio: "inherit" });
   };
 }
