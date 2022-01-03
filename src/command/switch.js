@@ -6,6 +6,9 @@ export class Switch {
 
   action = async (remote) => {
     const branches = this.#git.getBranch(remote);
+    if (!branches.length) {
+      return;
+    }
 
     const selectedBranch = await this.#select(branches);
 
