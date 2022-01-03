@@ -7,12 +7,12 @@ export default class Discard {
 
   action = async (instructions) => {
     const status = this.#git.status();
-    if (!status.workingTree.length && !status.untracked.length) {
+    if (!status.unstagedFiles.length && !status.untrackedFiles.length) {
       return;
     }
 
     const selectedFiles = await this.#multiselectFiles(
-      [...status.workingTree, ...status.untracked],
+      [...status.unstagedFiles, ...status.untrackedFiles],
       instructions
     );
 
@@ -21,8 +21,8 @@ export default class Discard {
       return;
     }
 
-    const selectedStagedFiles = merge(selectedFiles, status.workingTree);
-    const selectedUntrackedFiles = merge(selectedFiles, status.untracked);
+    const selectedStagedFiles = merge(selectedFiles, status.unstagedFiles);
+    const selectedUntrackedFiles = merge(selectedFiles, status.untrackedFiles);
 
     this.#git.discard(selectedStagedFiles, selectedUntrackedFiles);
   };

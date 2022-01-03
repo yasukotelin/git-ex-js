@@ -5,9 +5,9 @@ export class Git {
     const results = execSync("git status --porcelain").toString().split(/\n/);
 
     const status = {
-      index: [],
-      workingTree: [],
-      untracked: [],
+      stagedFiles: [],
+      unstagedFiles: [],
+      untrackedFiles: [],
     };
     results.forEach((e) => {
       if (!e.length) {
@@ -15,7 +15,7 @@ export class Git {
       }
 
       if (e.startsWith("??")) {
-        status.untracked.push(e.substring(3, e.length));
+        status.untrackedFiles.push(e.substring(3, e.length));
       } else {
         /*
         'M  src/index.js' -> index only.
@@ -23,10 +23,10 @@ export class Git {
         'MM src/index.js' -> both index and working tree
         */
         if (e[0] !== " ") {
-          status.index.push(e.substring(3, e.length));
+          status.stagedFiles.push(e.substring(3, e.length));
         }
         if (e[1] !== " ") {
-          status.workingTree.push(e.substring(3, e.length));
+          status.unstagedFiles.push(e.substring(3, e.length));
         }
       }
     });

@@ -16,7 +16,7 @@ export default class Diff {
   action = async (cached, instructions) => {
     const status = this.#git.status();
 
-    const files = cached ? status.index : status.workingTree;
+    const files = cached ? status.stagedFiles : status.unstagedFiles;
 
     if (!files.length) {
       return;
