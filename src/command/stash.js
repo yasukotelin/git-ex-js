@@ -65,5 +65,22 @@ export default class Stash {
 
   #list = async () => {};
 
-  #clear = async () => {};
+  #clear = async () => {
+    const response = await prompts({
+      type: "confirm",
+      name: "confirm",
+      message: "Clear all stash",
+      initial: false,
+    });
+
+    if (!response.confirm) {
+      return;
+    }
+
+    try {
+      this.#git.stashClear();
+    } catch (e) {
+      // Git already outputs an error, so it doesn't do anything.
+    }
+  };
 }

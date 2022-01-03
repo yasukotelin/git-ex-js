@@ -120,4 +120,8 @@ export class Git {
   stashSave = (message) => {
     execSync(`git stash save -u ${message}`);
   };
+
+  stashClear = () => {
+    execSync("git stash clear");
+  };
 }
