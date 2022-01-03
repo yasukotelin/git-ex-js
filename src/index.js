@@ -7,6 +7,7 @@ import { Unstage } from "./command/unstage.js";
 import { createRequire } from "module";
 import { Switch } from "./command/switch.js";
 import Diff from "./command/diff.js";
+import Discard from "./command/discard.js";
 
 const require = createRequire(import.meta.url);
 const { version, description } = require("../package.json");
@@ -15,6 +16,7 @@ const switchBranch = new Switch();
 const stage = new Stage();
 const unstage = new Unstage();
 const diff = new Diff();
+const discard = new Discard();
 const rmMerged = new RmMerged();
 
 const instructionsOption = new Option(
@@ -52,6 +54,12 @@ program
     const cached = options.cached || options.staged;
     diff.action(cached, options.instructions);
   });
+
+program
+  .command("discard")
+  .description("discard files")
+  .addOption(instructionsOption)
+  .action((options) => discard.action(options.instructions));
 
 program
   .command("rm-merged")

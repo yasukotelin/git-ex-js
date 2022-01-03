@@ -106,4 +106,14 @@ export class Git {
       : ["diff", ...files];
     spawn("git", options, { stdio: "inherit" });
   };
+
+  /**
+   * Discard files
+   * @param {string[]} stagedFiles
+   * @param {string[]} untrackedFiles
+   */
+  discard = (stagedFiles, untrackedFiles) => {
+    execSync(`git checkout ${stagedFiles.join(" ")}`);
+    execSync(`git clean -df ${untrackedFiles.join(" ")}`);
+  };
 }
