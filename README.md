@@ -35,6 +35,7 @@ Commands:
   stage [options]      stage files
   unstage [options]    unstage files
   diff [options]       show diff with selector
+  discard [options]    discard files
   rm-merged [options]  remove merged branch
   help [command]       display help for command
 ```
@@ -85,6 +86,18 @@ show diff with selector
 Options:
   -c, --cached        show diff cached(staged) files (default: false)
   -s, --staged        --cached alias (default: false)
+  -i, --instructions  display instructions (default: not display)
+  -h, --help          display help for command
+```
+
+### git ex discard
+
+```
+Usage: git-ex discard [options]
+
+discard files
+
+Options:
   -i, --instructions  display instructions (default: not display)
   -h, --help          display help for command
 ```
