@@ -1,6 +1,6 @@
 # git-ex
 
-![prettier workflow](https://github.com/yasukotelin/git-ex-js/actions/workflows/prettier.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![npm version](https://badge.fury.io/js/@yasukotelin%2Fgit-ex.svg) ![prettier workflow](https://github.com/yasukotelin/git-ex-js/actions/workflows/prettier.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 git-ex is git extensions tool.  
 
@@ -8,15 +8,16 @@ git-ex is git extensions tool.
 
 ### from npm
 
-not yet.
+```
+npm i -g @yasukotelin/git-ex
+```
 
 ### from local code
 
 ```bash
 git clone https://github.com/yasukotelin/git-ex-js
 npm install
-npm run build
-npm install -g ./
+npm run localInstall
 ```
 
 ## Commands

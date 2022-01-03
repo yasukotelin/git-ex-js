@@ -1,5 +1,5 @@
 {
-  "name": "git-ex",
+  "name": "@yasukotelin/git-ex",
   "version": "1.0.0",
   "description": "git-ex is git extensions tool",
   "type": "module",
