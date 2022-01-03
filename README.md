@@ -44,7 +44,25 @@ Commands:
   help [command]       display help for command
 ```
 
+### How to use multiselector
+
+```
+? Pick stage files ›  
+Instructions:
+    ↑/↓: Highlight option
+    ←/→/[space]: Toggle selection
+    a: Toggle all
+    enter/return: Complete answer
+◯   README.md
+```
+
+You can see Instructions with `--instructions` option.
+
 ### git ex switch
+
+Switch branch with selector.
+
+when use `--remote` , create new branch with selected remote it. Initial value is remote branch name.
 
 ```
 Usage: git-ex switch [options]
@@ -56,7 +74,13 @@ Options:
   -h, --help    display help for command
 ```
 
+![img](https://user-images.githubusercontent.com/31115673/147957478-6171990f-09e7-40e1-8205-5e71231ebb79.gif)
+
+![img](https://user-images.githubusercontent.com/31115673/147957589-53bce884-75c7-4111-8ad5-73014ba68e60.gif)
+
 ### git ex stage
+
+Add (Stage) with multiselector.
 
 ```
 Usage: git-ex stage [options]
@@ -68,7 +92,11 @@ Options:
   -h, --help          display help for command
 ```
 
+![img](https://user-images.githubusercontent.com/31115673/147958652-d54852e8-5c15-4414-8bd4-11d5faa23927.gif)
+
 ### git ex unstage
+
+Reset (Unstage) with multiselector.
 
 ```
 Usage: git-ex unstage [options]
@@ -80,7 +108,13 @@ Options:
   -h, --help          display help for command
 ```
 
+![img](https://user-images.githubusercontent.com/31115673/147958658-6ebc182a-a2b8-4dd7-a4fc-6eab510b9eb5.gif)
+
 ### git ex diff
+
+Display diff files with multiselector. If you use `--cached` option, you can select from staged files.
+
+You can use `--staged` instead of `--cached` .
 
 ```
 Usage: git-ex diff [options]
@@ -94,6 +128,8 @@ Options:
   -h, --help          display help for command
 ```
 
+![img](https://user-images.githubusercontent.com/31115673/147961425-8943f514-38a6-49b4-be4e-ea170c7a564a.gif)
+
 ### git ex stash
 
 ```
@@ -106,13 +142,15 @@ Options:
   -h, --help          display help for command
 ```
 
-#### Demo
-
 ![img](https://user-images.githubusercontent.com/31115673/147911812-a627034a-7175-4b20-a403-ba224e43163c.gif)
 
 ![img](https://user-images.githubusercontent.com/31115673/147911937-37b26c08-dcff-49e4-af0c-3d6d339163a9.gif)
 
 ### git ex discard
+
+Discard selected files.
+
+If modified files, discard means `git checkout {file}` . If untracked files, execute `git clean -df {files}` .
 
 ```
 Usage: git-ex discard [options]
@@ -124,7 +162,11 @@ Options:
   -h, --help          display help for command
 ```
 
+![img](https://user-images.githubusercontent.com/31115673/147961313-ed382494-95af-4918-b255-8b975fb1c451.gif)
+
 ### git ex rm-merged
+
+Remove merged branches with multiselector.
 
 ```
 Usage: git-ex rm-merged [options]
@@ -135,6 +177,8 @@ Options:
   -i, --instructions  display instructions (default: not display)
   -h, --help          display help for command
 ```
+
+![img](https://user-images.githubusercontent.com/31115673/147961419-6e620680-cb65-4411-b081-98c62b7731ad.gif)
 
 ## Development
 
