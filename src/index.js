@@ -24,7 +24,13 @@ const instructionsOption = new Option(
   "display instructions"
 ).default(false, "not display");
 
-program.version(version).description(description);
+program
+  .version(version)
+  .description(
+    description +
+      "\n\nyou can see more information" +
+      "\n=> https://github.com/yasukotelin/git-ex-js"
+  );
 
 program
   .command("switch")
@@ -54,6 +60,12 @@ program
     const cached = options.cached || options.staged;
     diff.action(cached, options.instructions);
   });
+
+program
+  .command("stash")
+  .description("stash accesor")
+  .addOption(instructionsOption)
+  .action((options) => {});
 
 program
   .command("discard")
