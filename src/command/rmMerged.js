@@ -15,7 +15,7 @@ export class RmMerged {
       instructions
     );
 
-    if (selectedBranches == null) {
+    if (!selectedBranches) {
       return;
     }
 
@@ -42,10 +42,7 @@ export class RmMerged {
 
     const selected = response.branches;
 
-    if (!selected) {
-      return null;
-    }
-    if (!selected.length) {
+    if (!selected || !selected.length) {
       return null;
     }
 

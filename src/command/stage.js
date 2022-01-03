@@ -8,7 +8,9 @@ export class Stage {
     const status = this.#git.status();
     const unstagedFiles = [...status.workingTree, ...status.untracked];
 
-    if (!unstagedFiles.length) return;
+    if (!unstagedFiles.length) {
+      return;
+    }
 
     const choices = unstagedFiles.map((f) => ({
       title: f,
@@ -25,8 +27,11 @@ export class Stage {
     });
 
     const selected = response[name];
-    if (!selected) return;
-    if (!selected.length) return;
+
+    if (!selected || !selected.length) {
+      // cancel
+      return;
+    }
 
     this.#git.add(selected);
   };

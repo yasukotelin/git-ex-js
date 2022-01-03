@@ -122,8 +122,12 @@ export class Git {
    * @param {string[]} untrackedFiles
    */
   discard = (stagedFiles, untrackedFiles) => {
-    spawn("git", ["checkout", ...stagedFiles], { stdio: "inherit" });
-    spawn("git", ["clean", "-df", ...untrackedFiles], { stdio: "inherit" });
+    if (stagedFiles.length) {
+      spawn("git", ["checkout", ...stagedFiles], { stdio: "inherit" });
+    }
+    if (untrackedFiles.length) {
+      spawn("git", ["clean", "-df", ...untrackedFiles], { stdio: "inherit" });
+    }
   };
 
   stashSave = (message) => {

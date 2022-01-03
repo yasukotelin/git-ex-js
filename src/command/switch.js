@@ -17,20 +17,12 @@ export class Switch {
       const newBranchName = await this.#askNewBranchName(selectedBranch);
 
       if (!newBranchName) {
+        // cancel
         return;
       }
-
-      try {
-        this.#git.switchRemote(selectedBranch, newBranchName);
-      } catch (e) {
-        // Git already outputs an error, so it doesn't do anything.
-      }
+      this.#git.switchRemote(selectedBranch, newBranchName);
     } else {
-      try {
-        this.#git.switch(selectedBranch, remote);
-      } catch (e) {
-        // Git already outputs an error, so it doesn't do anything.
-      }
+      this.#git.switch(selectedBranch, remote);
     }
   };
 

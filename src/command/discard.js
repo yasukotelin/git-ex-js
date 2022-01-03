@@ -24,12 +24,7 @@ export default class Discard {
     const selectedStagedFiles = merge(selectedFiles, status.workingTree);
     const selectedUntrackedFiles = merge(selectedFiles, status.untracked);
 
-    try {
-      this.#git.discard(selectedStagedFiles, selectedUntrackedFiles);
-    } catch (e) {
-      // Git already outputs an error, so it doesn't do anything.
-      console.error(e);
-    }
+    this.#git.discard(selectedStagedFiles, selectedUntrackedFiles);
   };
 
   #multiselectFiles = async (files, instructions) => {

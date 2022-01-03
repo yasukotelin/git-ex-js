@@ -24,8 +24,10 @@ export class Unstage {
     });
 
     const selected = response[name];
-    if (!selected) return;
-    if (!selected.length) return;
+
+    if (!selected || !selected.length) {
+      return;
+    }
 
     this.#git.unstage(selected);
   };

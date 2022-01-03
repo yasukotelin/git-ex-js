@@ -29,11 +29,7 @@ export default class Diff {
       return;
     }
 
-    try {
-      this.#git.diff(selectedFiles, cached);
-    } catch (e) {
-      // Git already outputs an error, so it doesn't do anything.
-    }
+    this.#git.diff(selectedFiles, cached);
   };
 
   /**
