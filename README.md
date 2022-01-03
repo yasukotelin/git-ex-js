@@ -106,6 +106,12 @@ Options:
   -h, --help          display help for command
 ```
 
+#### Demo
+
+![img](https://user-images.githubusercontent.com/31115673/147911812-a627034a-7175-4b20-a403-ba224e43163c.gif)
+
+![img](https://user-images.githubusercontent.com/31115673/147911937-37b26c08-dcff-49e4-af0c-3d6d339163a9.gif)
+
 ### git ex discard
 
 ```
