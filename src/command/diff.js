@@ -7,18 +7,16 @@ const UNSTAGED = "unstaged";
 export default class Diff {
   #git = new Git();
 
-  action = async (instructions) => {
-    const area = await this.#askWhichArea(instructions);
-
-    if (!area) {
-      // canncel
-      return;
-    }
-    const isAreaStaged = area === STAGED;
-
+  /**
+   * Show diff with multiselector
+   * @param {boolean} cached show cached(staged) files
+   * @param {boolean} instructions display instructions
+   * @returns
+   */
+  action = async (cached, instructions) => {
     const status = this.#git.status();
 
-    const files = isAreaStaged ? status.index : status.workingTree;
+    const files = cached ? status.index : status.workingTree;
 
     if (!files.length) {
       return;
@@ -32,7 +30,7 @@ export default class Diff {
     }
 
     try {
-      this.#git.diff(selectedFiles, isAreaStaged);
+      this.#git.diff(selectedFiles, cached);
     } catch (e) {
       // Git already outputs an error, so it doesn't do anything.
     }

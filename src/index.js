@@ -45,8 +45,13 @@ program
 program
   .command("diff")
   .description("show diff with selector")
+  .option("-c, --cached", "show diff cached(staged) files", false)
+  .option("-s, --staged", "--cached alias", false)
   .addOption(instructionsOption)
-  .action((options) => diff.action(options.instructions));
+  .action((options) => {
+    const cached = options.cached || options.staged;
+    diff.action(cached, options.instructions);
+  });
 
 program
   .command("rm-merged")
