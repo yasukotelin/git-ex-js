@@ -65,7 +65,7 @@ program
 
 program
   .command("stash")
-  .description("stash accesor")
+  .description("stash actions")
   .addOption(instructionsOption)
   .action((options) => stash.action(options.instructions));
 
