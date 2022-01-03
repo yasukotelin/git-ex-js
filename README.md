@@ -83,6 +83,8 @@ Usage: git-ex diff [options]
 show diff with selector
 
 Options:
+  -c, --cached        show diff cached(staged) files (default: false)
+  -s, --staged        --cached alias (default: false)
   -i, --instructions  display instructions (default: not display)
   -h, --help          display help for command
 ```
