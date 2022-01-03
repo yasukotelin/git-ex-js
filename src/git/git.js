@@ -116,4 +116,8 @@ export class Git {
     execSync(`git checkout ${stagedFiles.join(" ")}`);
     execSync(`git clean -df ${untrackedFiles.join(" ")}`);
   };
+
+  stashSave = (message) => {
+    execSync(`git stash save -u ${message}`);
+  };
 }
