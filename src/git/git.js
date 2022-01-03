@@ -1,4 +1,4 @@
-import { exec, execSync, spawn } from "child_process";
+import { execSync, spawn } from "child_process";
 
 export class Git {
   status = () => {
@@ -34,10 +34,12 @@ export class Git {
     return status;
   };
 
-  // Switch local branch
+  /**
+   * Switch local branch
+   * @param {string} branch
+   */
   switch = (branch) => {
-    const stdout = execSync(`git switch ${branch}`);
-    return stdout.toString();
+    spawn("git", ["switch", branch], { stdio: "inherit" });
   };
 
   /**
@@ -46,7 +48,7 @@ export class Git {
    * @param {string} newBranchName create new branch name
    */
   switchRemote = (branch, newBranchName) => {
-    execSync(`git switch -c ${newBranchName} ${branch}`);
+    spawn("git", ["switch", "-c", newBranchName, branch], { stdio: "inherit" });
   };
 
   getBranch = (remote) => {
@@ -78,27 +80,34 @@ export class Git {
     );
   };
 
-  // Remove branches
+  /**
+   * Remove branches
+   * @param {string[]} branches
+   */
   removeBranches = (branches) => {
-    const stdout = execSync(`git branch -d ${branches.join(" ")}`);
-    return stdout.toString();
+    spawn("git", ["branch", "-d", ...branches], { stdio: "inherit" });
   };
 
+  /**
+   * Add files to index. (Staged files)
+   * @param {string[]} files
+   */
   add = (files) => {
-    const stdout = execSync(`git add ${files.join(" ")}`);
-    return stdout.toString();
+    spawn("git", ["add", ...files], { stdio: "inherit" });
   };
 
+  /**
+   * Unstage files from index.
+   * @param {string[]} files
+   */
   unstage = (files) => {
-    const stdout = execSync(`git reset HEAD ${files.join(" ")}`);
-    return stdout.toString();
+    spawn("git", ["reset", "HEAD", ...files], { stdio: "inherit" });
   };
 
   /**
    * execute git diff
    * @param {string[]} files
    * @param {boolean} isStaged
-   * @returns {string} stdout
    */
   diff = (files, isStaged) => {
     const options = isStaged
@@ -113,13 +122,12 @@ export class Git {
    * @param {string[]} untrackedFiles
    */
   discard = (stagedFiles, untrackedFiles) => {
-    execSync(`git checkout ${stagedFiles.join(" ")}`);
-    execSync(`git clean -df ${untrackedFiles.join(" ")}`);
+    spawn("git", ["checkout", ...stagedFiles], { stdio: "inherit" });
+    spawn("git", ["clean", "-df", ...untrackedFiles], { stdio: "inherit" });
   };
 
   stashSave = (message) => {
-    const options = ["stash", "save", "-u", message];
-    spawn("git", options, { stdio: "inherit" });
+    spawn("git", ["stash", "save", "-u", message], { stdio: "inherit" });
   };
 
   stashList = () => {
@@ -129,22 +137,18 @@ export class Git {
   };
 
   stashPop = (stash) => {
-    const options = ["stash", "pop", stash];
-    spawn("git", options, { stdio: "inherit" });
+    spawn("git", ["stash", "pop", stash], { stdio: "inherit" });
   };
 
   stashApply = (stash) => {
-    const options = ["stash", "apply", stash];
-    spawn("git", options, { stdio: "inherit" });
+    spawn("git", ["stash", "apply", stash], { stdio: "inherit" });
   };
 
   stashDrop = (stash) => {
-    const options = ["stash", "drop", stash];
-    spawn("git", options, { stdio: "inherit" });
+    spawn("git", ["stash", "drop", stash], { stdio: "inherit" });
   };
 
   stashClear = () => {
-    const options = ["stash", "clear"];
-    spawn("git", options, { stdio: "inherit" });
+    spawn("git", ["stash", "clear"], { stdio: "inherit" });
   };
 }
