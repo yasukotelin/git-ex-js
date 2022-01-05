@@ -1,8 +1,8 @@
 # git-ex
 
-![npm version](https://badge.fury.io/js/@yasukotelin%2Fgit-ex.svg) ![npm](https://img.shields.io/npm/dt/@yasukotelin/git-ex.svg) ![prettier workflow](https://github.com/yasukotelin/git-ex-js/actions/workflows/prettier.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://badge.fury.io/js/@yasukotelin%2Fgit-ex.svg)](https://www.npmjs.com/package/@yasukotelin/git-ex) [![npm](https://img.shields.io/npm/dt/@yasukotelin/git-ex.svg)](https://www.npmjs.com/package/@yasukotelin/git-ex) [![prettier workflow](https://github.com/yasukotelin/git-ex-js/actions/workflows/prettier.yml/badge.svg)](https://github.com/yasukotelin/git-ex-js/actions) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-git-ex is git extensions tool.  
+git-ex is git extensions tool.
 
 ## Install
 
