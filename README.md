@@ -1,6 +1,6 @@
 # git-ex
 
-![npm version](https://badge.fury.io/js/@yasukotelin%2Fgit-ex.svg) ![prettier workflow](https://github.com/yasukotelin/git-ex-js/actions/workflows/prettier.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![npm version](https://badge.fury.io/js/@yasukotelin%2Fgit-ex.svg) ![npm](https://img.shields.io/npm/dt/@yasukotelin/git-ex.svg) ![prettier workflow](https://github.com/yasukotelin/git-ex-js/actions/workflows/prettier.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 git-ex is git extensions tool.  
 
@@ -19,6 +19,8 @@ git clone https://github.com/yasukotelin/git-ex-js
 npm install
 npm run localInstall
 ```
+
+> If you can't use `git ex` , you need to restart terminal.
 
 ## Commands
 
@@ -55,6 +57,8 @@ Instructions:
     a: Toggle all
     enter/return: Complete answer
 ◯   README.md
+◯   src/index.js
+◯   src/command/diff.js
 ```
 
 You can see Instructions with `--instructions` option.
