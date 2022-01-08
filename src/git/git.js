@@ -1,4 +1,4 @@
-import { execSync, spawn } from "child_process";
+import { execSync, spawn, spawnSync } from "child_process";
 
 export class Git {
   status = () => {
@@ -145,11 +145,11 @@ export class Git {
   };
 
   stashShowFiles = (stash) => {
-    spawn("git", ["stash", "show", stash], { stdio: "inherit" });
+    spawnSync("git", ["stash", "show", stash], { stdio: "inherit" });
   };
 
   stashShowDiff = (stash) => {
-    spawn("git", ["stash", "show", "-p", stash], { stdio: "inherit" });
+    spawnSync("git", ["stash", "show", "-p", stash], { stdio: "inherit" });
   };
 
   stashApply = (stash) => {

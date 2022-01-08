@@ -81,28 +81,35 @@ export default class Stash {
       return;
     }
 
-    const action = await this.#selectStashAction();
-    if (!action || !action.length) {
-      // cancel
-      return;
-    }
+    let isLoop = true;
 
-    switch (action) {
-      case ACTION_SHOW_FILES:
-        this.#git.stashShowFiles(stash);
-        break;
-      case ACTION_SHOW_DIFF:
-        this.#git.stashShowDiff(stash);
-        break;
-      case ACTION_POP:
-        this.#git.stashPop(stash);
-        break;
-      case ACTION_APPLY:
-        this.#git.stashApply(stash);
-        break;
-      case ACTION_DROP:
-        this.#git.stashDrop(stash);
-        break;
+    while (isLoop) {
+      const action = await this.#selectStashAction();
+      if (!action || !action.length) {
+        // cancel
+        return;
+      }
+
+      switch (action) {
+        case ACTION_SHOW_FILES:
+          this.#git.stashShowFiles(stash);
+          break;
+        case ACTION_SHOW_DIFF:
+          this.#git.stashShowDiff(stash);
+          break;
+        case ACTION_POP:
+          this.#git.stashPop(stash);
+          isLoop = false;
+          break;
+        case ACTION_APPLY:
+          this.#git.stashApply(stash);
+          isLoop = false;
+          break;
+        case ACTION_DROP:
+          this.#git.stashDrop(stash);
+          isLoop = false;
+          break;
+      }
     }
   };
 
