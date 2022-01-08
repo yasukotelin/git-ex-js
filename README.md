@@ -12,7 +12,7 @@ git-ex is git extensions tool.
 npm i -g @yasukotelin/git-ex
 ```
 
-### from local code
+### from local code (dev version)
 
 ```bash
 git clone https://github.com/yasukotelin/git-ex-js
@@ -136,6 +136,9 @@ Options:
 ![img](https://user-images.githubusercontent.com/31115673/147961425-8943f514-38a6-49b4-be4e-ea170c7a564a.gif)
 
 ### git ex stash
+
+Stash actions (show list, new stash save and clear all stash.).
+You can select a stash from list. And do action to stash (show diff, pop, apply and drop).
 
 ```
 Usage: git-ex stash [options]
