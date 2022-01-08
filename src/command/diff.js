@@ -69,6 +69,7 @@ export default class Diff {
       type: "multiselect",
       name: "selectedFiles",
       message: "Pick files",
+      min: 1,
       instructions: instructions,
       choices: files.map((f) => ({
         title: f,

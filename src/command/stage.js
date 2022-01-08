@@ -22,6 +22,7 @@ export class Stage {
       type: "multiselect",
       name: name,
       message: "Pick stage files",
+      min: 1,
       instructions: instructions,
       choices: choices,
     });

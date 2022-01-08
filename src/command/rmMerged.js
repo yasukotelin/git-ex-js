@@ -36,6 +36,7 @@ export class RmMerged {
       type: "multiselect",
       name: "branches",
       message: "Pick remove branches",
+      min: 1,
       instructions: instructions,
       choices: choices,
     });

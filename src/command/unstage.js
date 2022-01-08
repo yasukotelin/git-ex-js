@@ -19,6 +19,7 @@ export class Unstage {
       type: "multiselect",
       name: name,
       message: "Pick unstage files",
+      min: 1,
       instructions: instructions,
       choices: choices,
     });

@@ -32,6 +32,7 @@ export default class Discard {
       type: "multiselect",
       name: "selectedFiles",
       message: "Pick discard files",
+      min: 1,
       instructions: instructions,
       choices: files.map((f) => ({
         title: f,
