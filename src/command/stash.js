@@ -67,8 +67,8 @@ export default class Stash {
     const message = response.message;
 
     if (!message || !message.length) {
-        // cancel
-        return;
+      // cancel
+      return;
     }
 
     this.#git.stashSave(message);
