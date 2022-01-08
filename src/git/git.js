@@ -144,6 +144,14 @@ export class Git {
     spawn("git", ["stash", "pop", stash], { stdio: "inherit" });
   };
 
+  stashShowFiles = (stash) => {
+    spawn("git", ["stash", "show", stash], { stdio: "inherit" });
+  };
+
+  stashShowDiff = (stash) => {
+    spawn("git", ["stash", "show", "-p", stash], { stdio: "inherit" });
+  };
+
   stashApply = (stash) => {
     spawn("git", ["stash", "apply", stash], { stdio: "inherit" });
   };

@@ -1,6 +1,16 @@
 import prompts from "prompts";
 import { Git } from "../git/git.js";
 
+const ACTION_LIST = "list";
+const ACTION_SAVE = "save";
+const ACTION_CLEAR = "clear";
+
+const ACTION_SHOW_FILES = "show files";
+const ACTION_SHOW_DIFF = "show diff";
+const ACTION_POP = "pop";
+const ACTION_APPLY = "apply";
+const ACTION_DROP = "drop";
+
 export default class Stash {
   #git = new Git();
 
@@ -12,13 +22,13 @@ export default class Stash {
     }
 
     switch (action) {
-      case "list":
+      case ACTION_LIST:
         await this.#list();
         break;
-      case "save":
+      case ACTION_SAVE:
         await this.#save();
         break;
-      case "clear":
+      case ACTION_CLEAR:
         await this.#clear();
         break;
     }
@@ -31,9 +41,9 @@ export default class Stash {
       message: "Pick action",
       instructions: instructions,
       choices: [
-        { title: "list", value: "list" },
-        { title: "save", value: "save" },
-        { title: "clear", value: "clear" },
+        { title: ACTION_LIST, value: ACTION_LIST },
+        { title: ACTION_SAVE, value: ACTION_SAVE },
+        { title: ACTION_CLEAR, value: ACTION_CLEAR },
       ],
     });
 
@@ -79,13 +89,19 @@ export default class Stash {
 
     try {
       switch (action) {
-        case "pop":
+        case ACTION_SHOW_FILES:
+          this.#git.stashShowFiles(stash);
+          break;
+        case ACTION_SHOW_DIFF:
+          this.#git.stashShowDiff(stash);
+          break;
+        case ACTION_POP:
           this.#git.stashPop(stash);
           break;
-        case "apply":
+        case ACTION_APPLY:
           this.#git.stashApply(stash);
           break;
-        case "drop":
+        case ACTION_DROP:
           this.#git.stashDrop(stash);
           break;
       }
@@ -131,18 +147,28 @@ export default class Stash {
       message: "Pick action",
       choices: [
         {
-          title: "pop",
-          value: "pop",
+          title: ACTION_SHOW_FILES,
+          value: ACTION_SHOW_FILES,
+          description: "show stash files",
+        },
+        {
+          title: ACTION_SHOW_DIFF,
+          value: ACTION_SHOW_DIFF,
+          description: "show stash file's diff",
+        },
+        {
+          title: ACTION_POP,
+          value: ACTION_POP,
           description: "restore selected stash and remove it",
         },
         {
-          title: "apply",
-          value: "apply",
+          title: ACTION_APPLY,
+          value: ACTION_APPLY,
           description: "restore selected stash but will not remove it",
         },
         {
-          title: "drop",
-          value: "drop",
+          title: ACTION_DROP,
+          value: ACTION_DROP,
           description: "remove selected stash",
         },
       ],
