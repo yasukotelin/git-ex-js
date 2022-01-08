@@ -9,6 +9,7 @@
     "url": "https://github.com/yasukotelin/git-ex-js/issues"
   },
   "homepage": "https://github.com/yasukotelin/git-ex-js#readme",
+  "keywords": ["git", "cli", "tool", "terminal"],
   "type": "module",
   "scripts": {
     "start": "node ./src/index.js",
