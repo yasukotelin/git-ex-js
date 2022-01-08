@@ -87,26 +87,22 @@ export default class Stash {
       return;
     }
 
-    try {
-      switch (action) {
-        case ACTION_SHOW_FILES:
-          this.#git.stashShowFiles(stash);
-          break;
-        case ACTION_SHOW_DIFF:
-          this.#git.stashShowDiff(stash);
-          break;
-        case ACTION_POP:
-          this.#git.stashPop(stash);
-          break;
-        case ACTION_APPLY:
-          this.#git.stashApply(stash);
-          break;
-        case ACTION_DROP:
-          this.#git.stashDrop(stash);
-          break;
-      }
-    } catch (e) {
-      // Git already outputs an error, so it doesn't do anything.
+    switch (action) {
+      case ACTION_SHOW_FILES:
+        this.#git.stashShowFiles(stash);
+        break;
+      case ACTION_SHOW_DIFF:
+        this.#git.stashShowDiff(stash);
+        break;
+      case ACTION_POP:
+        this.#git.stashPop(stash);
+        break;
+      case ACTION_APPLY:
+        this.#git.stashApply(stash);
+        break;
+      case ACTION_DROP:
+        this.#git.stashDrop(stash);
+        break;
     }
   };
 
@@ -194,10 +190,6 @@ export default class Stash {
       return;
     }
 
-    try {
-      this.#git.stashClear();
-    } catch (e) {
-      // Git already outputs an error, so it doesn't do anything.
-    }
+    this.#git.stashClear();
   };
 }
