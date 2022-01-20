@@ -25,7 +25,7 @@ npm run localInstall
 ## Commands
 
 ```
-Usage: git-ex [options] [command]
+Usage: index [options] [command]
 
 git-ex is git extensions tool
 
@@ -38,7 +38,7 @@ Options:
 
 Commands:
   switch [options]     switch branch
-  stage [options]      stage files
+  stage|add [options]  stage files
   unstage [options]    unstage files
   diff [options]       show diff with selector
   stash [options]      stash actions
@@ -83,12 +83,12 @@ Options:
 
 ![img](https://user-images.githubusercontent.com/31115673/147957589-53bce884-75c7-4111-8ad5-73014ba68e60.gif)
 
-### git ex stage
+### git ex stage|add
 
-Add (Stage) with multiselector.
+Stage(Add) with multiselector.
 
 ```
-Usage: git-ex stage [options]
+Usage: index stage|add [options]
 
 stage files
 
