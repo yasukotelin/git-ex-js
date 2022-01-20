@@ -42,6 +42,7 @@ program
 
 program
   .command("stage")
+  .alias("add")
   .description("stage files")
   .addOption(instructionsOption)
   .action((options) => stage.action(options.instructions));
