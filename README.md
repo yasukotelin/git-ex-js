@@ -22,6 +22,12 @@ npm run localInstall
 
 > If you can't use `git ex` , you need to restart terminal.
 
+## Update
+
+```
+npm update -g @yasukotelin/git-ex
+```
+
 ## Commands
 
 ```
