@@ -66,7 +66,7 @@ export default class Stash {
 
     const message = response.message;
 
-    if (!message || !message.length) {
+    if (typeof message === "undefined") {
       // cancel
       return;
     }
